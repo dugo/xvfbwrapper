@@ -69,15 +69,8 @@ class Xvfb:
             self.proc = None
 
     def search_for_free_display(self):
-        ls = [int(x.split('X')[1].split('-')[0]) for x in self._lock_files()]
-        min_display_num = 1000
-        if len(ls):
-            display_num = max(min_display_num, max(ls) + 1)
-        else:
-            display_num = min_display_num
         random.seed()
-        display_num += random.randint(0, 100)
-        return display_num
+        return random.randint(100, 9223372036854775807)
 
     def _lock_files(self):
         tmpdir = '/tmp'
