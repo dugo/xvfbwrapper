@@ -70,7 +70,7 @@ class Xvfb:
 
     def search_for_free_display(self):
         random.seed()
-        return random.randint(100, 9223372036854775807)
+        return random.randint(100, 999999)
 
     def _lock_files(self):
         tmpdir = '/tmp'
