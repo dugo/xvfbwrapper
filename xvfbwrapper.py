@@ -29,7 +29,9 @@ class Xvfb:
         ]
 
         for key, value in kwargs.items():
-            self.xvfb_cmd = self.xvfb_cmd + ['-%s' % key, value]
+            self.xvfb_cmd = self.xvfb_cmd + ['-%s' % key]
+            if value:
+                self.xvfb_cmd.append(value)
 
         self.proc = None
         if 'DISPLAY' in os.environ:
