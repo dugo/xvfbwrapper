@@ -69,10 +69,14 @@ class Xvfb:
             self.proc.kill()
             self.proc.wait()
             self.proc = None
-
+            
     def search_for_free_display(self):
+        ls = [int(x.split('X')[1].split('-')[0]) for x in self._lock_files()]
         random.seed()
-        return random.randint(100, 999999)
+        while True:
+            r = random.randint(100, 999999)
+            if not r in ls:
+                return r
 
     def _lock_files(self):
         tmpdir = '/tmp'
