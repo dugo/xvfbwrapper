@@ -67,7 +67,7 @@ class Xvfb:
         self._redirect_display(self.old_display_num)
         if self.proc is not None:
             self.proc.kill()
-            self.proc.wait()
+            #self.proc.wait()
             self.proc = None
             
     def search_for_free_display(self):
