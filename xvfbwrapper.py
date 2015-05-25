@@ -74,7 +74,7 @@ class Xvfb:
         random.seed()
         while True:
             r = random.randint(100, 999999)
-            if not _check_lock_file(r):
+            if not self._check_lock_file(r):
                 return r
 
     def _check_lock_file(self,lock):
