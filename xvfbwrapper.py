@@ -71,12 +71,16 @@ class Xvfb:
             self.proc = None
             
     def search_for_free_display(self):
-        ls = [int(x.split('X')[1].split('-')[0]) for x in self._lock_files()]
         random.seed()
         while True:
             r = random.randint(100, 999999)
-            if not r in ls:
+            if not _check_lock_file(r):
                 return r
+
+    def _check_lock_file(self,lock):
+        if os.path.exists("/tmp/.X%s-lock"%lock):
+            return True
+        return False
 
     def _lock_files(self):
         tmpdir = '/tmp'
